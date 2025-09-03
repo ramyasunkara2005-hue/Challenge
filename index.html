@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saree Draping Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fef9f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #c62828;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #c62828;
+      margin-bottom: 10px;
+    }
+
+    select {
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .step-container {
+      margin-top: 20px;
+    }
+
+    .step {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-left: 4px solid #c62828;
+      background: #fff4f4;
+    }
+
+    .step img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #eee;
+      margin-top: 30px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Saree Draping Styles</h1>
+  <p>Select a style to learn how to drape it</p>
+</header>
+
+<div class="container">
+  <label for="styleSelect"><strong>Choose Draping Style:</strong></label>
+  <select id="styleSelect" onchange="loadStyle()">
+    <option value="">-- Select Style --</option>
+    <option value="nivi">Nivi Style (Traditional)</option>
+    <option value="bengali">Bengali Style</option>
+    <option value="gujarati">Gujarati Style</option>
+    <option value="maharashtrian">Maharashtrian Style</option>
+  </select>
+
+  <div id="stepsContainer" class="step-container"></div>
+</div>
+
+<footer>
+  &copy; 2025 Saree Draping App. All Rights Reserved.
+</footer>
+
+<script>
+  const sareeStyles = {
+    nivi: {
+      title: "Nivi Style",
+      steps: [
+        {
+          text: "Start tucking the saree from the right side of the waist and wrap it around once.",
+          image: "https://example.com/nivi1.jpg"
+        },
+        {
+          text: "Make pleats and tuck them in the center.",
+          image: "https://example.com/nivi2.jpg"
+        },
+        {
+          text: "Drape the pallu over the left shoulder.",
+          image: "https://example.com/nivi3.jpg"
+        }
+      ]
+    },
+    bengali: {
+      title: "Bengali Style",
+      steps: [
+        {
+          text: "Tuck the saree and make wide pleats.",
+          image: "https://example.com/bengali1.jpg"
+        },
+        {
+          text: "Wrap it around and bring the pallu in front.",
+          image: "https://example.com/bengali2.jpg"
+        },
+        {
+          text: "Throw the pallu over the left shoulder and pin.",
+          image: "https://example.com/bengali3.jpg"
+        }
+      ]
+    },
+    gujarati: {
+      title: "Gujarati Style",
+      steps: [
+        {
+          text: "Tuck and pleat the saree as usual.",
+          image: "https://example.com/gujarati1.jpg"
+        },
+        {
+          text: "Bring the pallu from the back to the front over the right shoulder.",
+          image: "https://example.com/gujarati2.jpg"
+        },
+        {
+          text: "Spread the pallu in front and pin neatly.",
+          image: "https://example.com/gujarati3.jpg"
+        }
+      ]
+    },
+    maharashtrian: {
+      title: "Maharashtrian Style",
+      steps: [
+        {
+          text: "Start from the center and bring ends around legs like a dhoti.",
+          image: "https://example.com/maha1.jpg"
+        },
+        {
+          text: "Tuck and secure the back side.",
+          image: "https://example.com/maha2.jpg"
+        },
+        {
+          text: "Drape the pallu over the shoulder in a graceful style.",
+          image: "https://example.com/maha3.jpg"
+        }
+      ]
+    }
+  };
+
+  function loadStyle() {
+    const style = document.getElementById('styleSelect').value;
+    const container = document.getElementById('stepsContainer');
+    container.innerHTML = '';
+
+    if (!style || !sareeStyles[style]) return;
+
+    const selected = sareeStyles[style];
+
+    const heading = document.createElement('h2');
+    heading.textContent = selected.title;
+    container.appendChild(heading);
+
+    selected.steps.forEach((step, index) => {
+      const stepDiv = document.createElement('div');
+      stepDiv.className = 'step';
+
+      const text = document.createElement('p');
+      text.textContent = `Step ${index + 1}: ${step.text}`;
+      stepDiv.appendChild(text);
+
+      if (step.image) {
+        const img = document.createElement('img');
+        img.src = step.image;
+        img.alt = `Step ${index + 1}`;
+        stepDiv.appendChild(img);
+      }
+
+      container.appendChild(stepDiv);
+    });
+  }
+</script>
+
+</body>
+</html>
